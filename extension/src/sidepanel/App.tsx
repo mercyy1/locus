@@ -21,6 +21,7 @@ export function App() {
   const [filter, setFilter] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [toast, setToast] = useState("");
+  const [pageHint, setPageHint] = useState(false);
   const toastTimer = useRef<number>(0);
 
   const notify = (msg: string) => {
@@ -59,7 +60,10 @@ export function App() {
 
   async function savePage() {
     const res: SaveResult = await chrome.runtime.sendMessage({ type: "save-page" } satisfies Message);
-    if (res?.ok) notify(res.limited ? "Saved the link only (Locus couldn't read this page)" : "Page saved");
+    if (res?.ok) {
+      setPageHint(false);
+      notify(res.limited ? "Saved the link only (Locus couldn't read this page)" : "Page saved");
+    } else if (res?.error === "no-access") setPageHint(true);
     else notify("Couldn't save this page. Try right-click → Save page to Locus.");
   }
 
@@ -166,6 +170,18 @@ export function App() {
                 <PageIcon size={14} /> Save this page
               </button>
             </div>
+
+            {pageHint && (
+              <div className="callout">
+                <p>
+                  Chrome only lets Locus read a page when you ask from the page itself. Right-click the page and choose{" "}
+                  <b>Save page to Locus</b>, or press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>.
+                </p>
+                <button className="link-btn small-text" onClick={() => setPageHint(false)}>
+                  Got it
+                </button>
+              </div>
+            )}
 
             {loaded && items.length === 0 ? (
               <div className="empty">
