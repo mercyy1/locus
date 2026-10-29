@@ -1,0 +1,19 @@
+:root {
+  --navy: #14213d;
+  --amber: #ffc53d;
+  --text: #2f3a4f;
+  --muted: #5b6578;
+  --subtle: #f5f7fa;
+  --ui: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ui);
+  color: var(--text);
+  background: #fff;
+}
+
+.app {
+  padding: 16px;
+}
