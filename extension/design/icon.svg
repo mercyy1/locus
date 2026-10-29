@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Locus mark: a navy tile, a highlighter stroke, and an L sitting on it -->
+  <rect x="4" y="4" width="120" height="120" rx="26" fill="#14213D"/>
+  <rect x="26" y="74" width="78" height="24" rx="6" fill="#FFC53D" transform="rotate(-4 64 86)"/>
+  <rect x="38" y="26" width="17" height="70" rx="3" fill="#FFFFFF"/>
+  <rect x="38" y="80" width="54" height="16" rx="3" fill="#FFFFFF"/>
+</svg>
