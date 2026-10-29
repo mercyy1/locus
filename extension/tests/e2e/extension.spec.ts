@@ -144,3 +144,28 @@ test("shows the saved card on the page", async ({ context, baseUrl }) => {
   await expect(page.locator("#locus-saved-card")).toBeAttached();
   await page.screenshot({ path: "test-results/saved-card.png" });
 });
+
+test("creates a collection and saves into it", async ({ context, worker, extensionId }) => {
+  const panel = await context.newPage();
+  await panel.setViewportSize({ width: 400, height: 760 });
+  await panel.goto(`chrome-extension://${extensionId}/sidepanel/index.html`);
+  await expect(panel.getByText("Nothing saved yet")).toBeVisible();
+
+  await panel.getByRole("tab", { name: "Library" }).click();
+  await panel.getByLabel("New collection name").fill("PSYC 2010 essay");
+  await panel.getByRole("button", { name: "Add" }).click();
+  await expect(panel.getByRole("button", { name: /PSYC 2010 essay/ })).toBeVisible();
+
+  const id = await panel.locator("select").first().evaluate((s: HTMLSelectElement) =>
+    Array.from(s.options).find((o) => o.text === "PSYC 2010 essay")!.value,
+  );
+  await panel.locator("select").first().selectOption(id);
+
+  await worker.evaluate(
+    // @ts-expect-error locusDebug is attached to the worker's global
+    (p) => globalThis.locusDebug.storeCapture(p),
+    { kind: "passage", text: "A passage for the essay.", source: { url: "https://example.org/a", title: "Essay source", authors: [] } },
+  );
+  await expect(panel.getByRole("button", { name: /PSYC 2010 essay\s*1/ })).toBeVisible();
+  await panel.screenshot({ path: "test-results/sidepanel-library.png" });
+});
