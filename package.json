@@ -1,0 +1,15 @@
+{
+  "name": "locus",
+  "private": true,
+  "description": "Local-first research memory: save the exact passage, keep it on your computer, use it with any AI.",
+  "author": "Maharshi Pandya",
+  "workspaces": [
+    "extension"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w extension",
+    "build": "npm run build -w extension",
+    "test": "npm run test -w extension",
+    "typecheck": "npm run typecheck -w extension"
+  }
+}
