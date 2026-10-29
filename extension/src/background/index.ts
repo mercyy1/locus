@@ -63,4 +63,4 @@ function report(r: SaveResult) {
 }
 
 // Handy from the worker's DevTools console, and used by the browser tests
-Object.assign(globalThis, { locusDebug: { storeCapture } });
+Object.assign(globalThis, { locusDebug: { storeCapture, saveFromTab } });

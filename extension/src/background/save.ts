@@ -10,6 +10,8 @@ import { DEFAULT_COLLECTION_ID, DEFAULT_COLLECTION_NAME } from "../lib/types";
 
 type Kind = "passage" | "page";
 
+export const NO_ACCESS = "no-access";
+
 export async function saveFromTab(
   tab: chrome.tabs.Tab,
   kind: Kind,
@@ -46,6 +48,9 @@ export async function saveFromTab(
     limited = true;
   }
   if (!payload && kind === "page") {
+    // No access at all (we can't even see the URL), e.g. "Save this page" from the side panel,
+    // which doesn't count as the user invoking the extension for activeTab
+    if (!tab.url) return { ok: false, error: NO_ACCESS };
     payload = { kind, text: "", source: extractSourceFromTab(tab) };
     limited = true;
   }
