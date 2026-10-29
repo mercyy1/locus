@@ -38,8 +38,10 @@ export function db(): Promise<IDBPDatabase<LocusDB>> {
 }
 
 // Tests use this to start from a clean slate
-export function resetDbConnection() {
+export async function resetDbConnection() {
+  const p = dbPromise;
   dbPromise = null;
+  if (p) (await p).close();
 }
 
 export async function ensureDefaultCollection(): Promise<void> {
