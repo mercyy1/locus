@@ -72,3 +72,7 @@ See [STATUS.md](STATUS.md) for what's unfinished, what's known to be broken, and
 ## Author
 
 Maharshi Pandya
+
+## License
+
+MIT — see [LICENSE](LICENSE).
