@@ -22,8 +22,3 @@ The extension covers most of milestone 1 in the build plan (capture, storage and
 - **Exact-spot links can miss** if the page changes, or if the passage spans very different parts of the page (like a table and a paragraph). The page then opens at the top, and the saved copy still has the passage.
 - **Not tested in the real context menu / shortcut flow by automation.** The browser tests run the same page script and background code, but Playwright can't click Chrome's right-click menu. A quick manual pass is worth doing after loading the extension.
 
-## Decisions for Maharshi
-
-1. **How should "Save this page" from the side panel get access?** Options: (a) keep `activeTab` only and point people to right-click / the shortcut, which is what it does now; (b) add optional host permissions, so the first time you save from the panel on a site Chrome asks "Allow Locus to read this site?". (b) is smoother but adds a permission prompt, and the proposal promises Locus reads a page only after the user acts.
-2. **License.** No license file yet. Pick one before making the repo public if you want others to be able to reuse the code (MIT is common for student projects), or leave it out to keep all rights.
-3. **Commit email.** Commits use pmaharshi390@gmail.com, which will be visible on a public repo. If you'd rather hide it, switch to your GitHub no-reply address (GitHub → Settings → Emails) and rewrite the history before the first push.
