@@ -4,7 +4,7 @@
 
 Locus is a local-first research memory. While you read, you save the exact passages you'll need later. Each save keeps where it came from (title, author, date, a link back to the exact spot), so you can find it again, reopen the page at that passage, and paste it into an AI chat or a draft with its sources attached. There's no account and nothing leaves your computer.
 
-This is my capstone project for PROG3320 at Conestoga College. It's a work in progress: right now the Chrome extension works on its own, and the Windows companion app (which adds MCP access for AI tools like Claude Desktop) comes later.
+ It's a work in progress: right now the Chrome extension works on its own, and the Windows companion app (which adds MCP access for AI tools like Claude Desktop) comes later.
 
 ## What works today
 
